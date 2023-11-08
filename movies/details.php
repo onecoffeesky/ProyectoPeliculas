@@ -264,45 +264,58 @@ if (isset($_POST['submit_comment'])) {
 	   <div class="details_end clerafix">
 		<h1>COMMENTS</h1>
 		<?php
-		$servername = "localhost"; // Nombre del servidor de la base de datos
-		$username = "root"; // Nombre de usuario de la base de datos
-		$password = ""; // Contraseña de la base de datos
-		$database = "movies"; // Nombre de la base de datos
-		$table = "comments"; // Nombre de la tabla
-		
-		// Conexión a la base de datos
-		$conn = new mysqli($servername, $username, $password, $database);
-		
-		// Verificar la conexión
-		if ($conn->connect_error) {
-			die("Error de conexión: " . $conn->connect_error);
-		}
-		
-		// Consulta SQL para obtener datos
-		$sql = "SELECT id, user, comment FROM $table";
-		$result = $conn->query($sql);
-		
-		// Comprobar si hay resultados
-		if ($result->num_rows > 0) {
-			echo "<table>";
-			echo "<tr><th>ID</th><th>Usuario</th><th>Comentario</th></tr>";
-		
-			while($row = $result->fetch_assoc()) {
-				echo "<tr>";
-				echo "<td>" . $row["id"] . "</td>";
-				echo "<td>" . $row["user"] . "</td>";
-				echo "<td>" . $row["comment"] . "</td>";
-				echo "</tr>";
-			}
-		
-			echo "</table>";
-		} else {
-			echo "No se encontraron resultados";
-		}
-		
-		// Cerrar la conexión a la base de datos
-		$conn->close();
-		?>
+$servername = "localhost"; // Nombre del servidor de la base de datos
+$username = "root"; // Nombre de usuario de la base de datos
+$password = ""; // Contraseña de la base de datos
+$database = "movies"; // Nombre de la base de datos
+$table = "comments"; // Nombre de la tabla
+
+// Conexión a la base de datos
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Verificar la conexión
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
+}
+
+// Manejar la eliminación de comentarios
+if (isset($_POST['delete_comment'])) {
+    $comment_id = $_POST['comment_id'];
+    $sql = "DELETE FROM $table WHERE id = $comment_id";
+    if ($conn->query($sql) === TRUE) {
+        echo "Comentario eliminado correctamente.";
+    } else {
+        echo "Error al eliminar el comentario: " . $conn->error;
+    }
+}
+
+// Consulta SQL para obtener datos
+$sql = "SELECT id, user, comment FROM $table";
+$result = $conn->query($sql);
+
+// Comprobar si hay resultados
+if ($result->num_rows > 0) {
+    echo "<table>";
+    echo "<tr><th>ID</th><th>Usuario</th><th>Comentario</th><th>Acción</th></tr>";
+
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["id"] . "</td>";
+        echo "<td>" . $row["user"] . "</td>";
+        echo "<td>" . $row["comment"] . "</td>";
+        echo '<td><form method="post" action=""><input type="hidden" name="comment_id" value="' . $row["id"] . '"><input type="submit" name="delete_comment" value="Eliminar"></form></td>';
+        echo "</tr>";
+    }
+
+    echo "</table>";
+} else {
+    echo "No se encontraron resultados";
+}
+
+// Cerrar la conexión a la base de datos
+$conn->close();
+?>
+
 		<h1>Comentarios</h1>
 		<div class="details_end_3 clearfix">
 		  <p><a href="#">Powered by Inceptos</a></p>
