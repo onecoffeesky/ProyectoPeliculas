@@ -35,6 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     die();
 }
 
+$request_headers = getallheaders();
+
+// Puedes realizar acciones específicas o simplemente devolver los encabezados recibidos.
+header("Content-Type: text/plain");
+foreach ($request_headers as $header => $value) {
+    echo "$header: $value\n";
+}
+
+
 // Resto del código para manejar otras solicitudes (GET, POST, etc.)
 // ...
 
