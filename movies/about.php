@@ -73,8 +73,8 @@
 								<li><a href="index.html">Home</a></li>
 								<li class="active_1"><a href="about.html">About Us</a></li>
 								<li><a href="blog.html">Blog</a></li>
-								<li><a href="details.html">Details</a></li>
-								<li><a href="contact.html">Contact Us</a></li>
+								<li><a href="details.php">Details</a></li>
+								<li><a href="contact.php">Contact Us</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle people"
 										data-toggle="dropdown"><i class="fa fa-user"></i></a>
 									<ul class="dropdown-menu">
@@ -168,6 +168,15 @@
 								<h1>LOREM IPSUM DOLOR SIT</h1>
 							</div>
 							<?php
+							if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+								header('Access-Control-Allow-Origin: *');
+								header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+								header('Access-Control-Allow-Headers: Content-Type OJABIO MEJIA');
+								header('Access-Control-Max-Age: 86400'); // Cache durante un día
+								header('Content-Length: 0');
+								header('Content-Type: text/plain');
+								die();
+							}
 							// Conectarse a la base de datos (reemplaza con tus credenciales)
 							$servername = "localhost";
 							$username = "root";

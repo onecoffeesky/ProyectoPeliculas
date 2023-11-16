@@ -95,8 +95,8 @@
                                 <li><a href="index.html">Home</a></li>
                                 <li><a href="about.html">About Us</a></li>
                                 <li><a href="blog.html">Blog</a></li>
-                                <li><a href="details.html">Details</a></li>
-                                <li class="active_1"><a href="contact.html">Contact Us</a></li>
+                                <li><a href="details.php">Details</a></li>
+                                <li class="active_1"><a href="contact.php">Contact Us</a></li>
                                 <li class="dropdown"><a href="#" class="dropdown-toggle people"
                                         data-toggle="dropdown"><i class="fa fa-user"></i></a>
                                     <ul class="dropdown-menu">

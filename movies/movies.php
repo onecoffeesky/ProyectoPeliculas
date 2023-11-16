@@ -24,6 +24,20 @@
 
 <body>
 <?php
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type OJABIO MEJIA');
+    header('Access-Control-Max-Age: 86400'); // Cache durante un día
+    header('Content-Length: 0');
+    header('Content-Type: text/plain');
+    die();
+}
+
+// Resto del código para manejar otras solicitudes (GET, POST, etc.)
+// ...
+
 // Conectarse a la base de datos (reemplaza con tus credenciales)
 $servername = "localhost";
 $username = "root";

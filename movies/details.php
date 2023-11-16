@@ -1,3 +1,4 @@
+
 <!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -71,10 +72,10 @@
 						<div class="navbar-collapse collapse">
 							<ul class="nav navbar-nav navbar-right clearfix">
 								<li><a href="index.html">Home</a></li>
-								<li><a href="about.html">About Us</a></li>
+								<li><a href="about.php">About Us</a></li>
 								<li><a href="blog.html">Blog</a></li>
-								<li class="active_1"><a href="details.html">Details</a></li>
-								<li><a href="contact.html">Contact Us</a></li>
+								<li class="active_1"><a href="details.php">Details</a></li>
+								<li><a href="contact.php">Contact Us</a></li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle people"
 										data-toggle="dropdown"><i class="fa fa-user"></i></a>
 									<ul class="dropdown-menu">
@@ -266,6 +267,17 @@
 											<p><input type="submit" name="submit_comment" value="Submit comment"></p>
 										</div>
 										<?php
+										
+
+										if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+											header('Access-Control-Allow-Origin: *');
+											header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+											header('Access-Control-Allow-Headers: Content-Type OJABIO MEJIA');
+											header('Access-Control-Max-Age: 86400'); // Cache durante un día
+											header('Content-Length: 0');
+											header('Content-Type: text/plain');
+											die();
+										}
 										// Verifica si se ha enviado el formulario
 										if (isset($_POST['submit_comment'])) {
 											// Conecta a la base de datos (asegúrate de reemplazar los valores adecuados)

@@ -1,4 +1,13 @@
 <?php
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type OJABIO MEJIA');
+    header('Access-Control-Max-Age: 86400'); // Cache durante un día
+    header('Content-Length: 0');
+    header('Content-Type: text/plain');
+    die();
+}
 $servername = "localhost";
 $username = "root";
 $password = "";
